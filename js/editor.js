@@ -725,7 +725,8 @@ async function loadFromHash() {
   const hash = window.location.hash.slice(1);
 
   if (!hash) {
-    editor.innerHTML = '';
+    // Show demo content when no saved content exists
+    editor.innerHTML = getDemoContent();
     updateStats();
     return;
   }
@@ -845,6 +846,54 @@ function initTheme() {
       lucide.createIcons();
     }
   });
+}
+
+/**
+ * Get demo content to showcase all editor features
+ */
+function getDemoContent() {
+  return `
+<h1>Welcome to LinkPad! 🎉</h1>
+<p>A minimal, shareable notepad that lives in your URL. <strong>No sign-up required.</strong></p>
+
+<h2>Getting Started</h2>
+<p>Select any text to see the <strong>formatting toolbar</strong>, or type <strong>/</strong> to open it anywhere.</p>
+
+<h3>Text Formatting</h3>
+<p>Make text <strong>bold</strong>, <em>italic</em>, or <u>underlined</u> with a single click.</p>
+
+<h3>Font Sizes</h3>
+<p>Use the <span style="font-size: 14px;">size dropdown</span> to adjust text size from <span style="font-size: 10px;">tiny (10px)</span> to <span style="font-size: 32px;">large (32px)</span>.</p>
+
+<h4>Lists</h4>
+<ul>
+  <li>Bullet points for unordered items</li>
+  <li>Great for quick notes</li>
+  <li>Easy to organize thoughts</li>
+</ul>
+
+<ol>
+  <li>Numbered lists for sequences</li>
+  <li>Perfect for step-by-step guides</li>
+  <li>Auto-numbered for convenience</li>
+</ol>
+
+<h4>Quotes</h4>
+<blockquote>Use blockquotes to highlight important information or cite sources. They add visual emphasis to key points.</blockquote>
+
+<h2>How It Works</h2>
+<p>Your content is <strong>compressed</strong> and stored right in the URL. Simply <strong>copy the link</strong> to save and share!</p>
+
+<h3>Pro Tips</h3>
+<ul>
+  <li>Press <strong>Tab</strong> to indent</li>
+  <li>Press <strong>Escape</strong> to close the toolbar</li>
+  <li>Click anywhere to position cursor, then set font size for new text</li>
+</ul>
+
+<p><em>Start typing below to create your own note...</em></p>
+<p></p>
+`;
 }
 
 // Auto-initialize when DOM is ready

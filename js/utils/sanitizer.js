@@ -19,6 +19,7 @@ const ALLOWED_TAGS = new Set([
   'h1',
   'h2',
   'h3',
+  'h4',
   'ul',
   'ol',
   'li',
@@ -29,7 +30,10 @@ const ALLOWED_TAGS = new Set([
  * Allowed attributes (only on specific tags)
  */
 const ALLOWED_ATTRIBUTES = {
-  // No attributes allowed by default for security
+  span: ['style'],
+  li: ['style'],
+  p: ['style'],
+  div: ['style'],
 };
 
 /**
@@ -61,16 +65,20 @@ export function sanitize(html) {
   const parser = new DOMParser();
   const doc = parser.parseFromString(cleaned, 'text/html');
 
-  // Recursively clean the document
-  const cleanedBody = cleanNode(doc.body);
+  // Recursively clean the document body
+  const cleanedFragment = cleanNode(doc.body);
 
-  return cleanedBody.innerHTML;
+  // Convert fragment to HTML string
+  const container = document.createElement('div');
+  container.appendChild(cleanedFragment);
+
+  return container.innerHTML;
 }
 
 /**
  * Recursively clean a DOM node
  * @param {Node} node
- * @returns {Node}
+ * @returns {DocumentFragment}
  */
 function cleanNode(node) {
   // Create a document fragment to hold clean nodes
@@ -99,7 +107,7 @@ function cleanNode(node) {
           }
         }
 
-        // Recursively clean children
+        // Recursively clean children and append directly to element
         const cleanChildren = cleanNode(child);
         cleanElement.appendChild(cleanChildren);
 
@@ -112,11 +120,7 @@ function cleanNode(node) {
     }
   }
 
-  // Create a container and append fragment
-  const container = document.createElement('div');
-  container.appendChild(fragment);
-
-  return container;
+  return fragment;
 }
 
 /**
@@ -135,6 +139,24 @@ function isAttributeValueSafe(attr, value) {
   for (const scheme of dangerousSchemes) {
     if (lowerValue.startsWith(scheme)) {
       return false;
+    }
+  }
+
+  // For style attribute, only allow safe CSS properties
+  if (attr === 'style') {
+    // Check for dangerous patterns in style
+    const dangerousStylePatterns = [
+      /expression\s*\(/i,
+      /javascript:/i,
+      /behavior:/i,
+      /url\s*\(/i,
+      /@import/i,
+    ];
+
+    for (const pattern of dangerousStylePatterns) {
+      if (pattern.test(value)) {
+        return false;
+      }
     }
   }
 
