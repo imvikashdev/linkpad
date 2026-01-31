@@ -3,17 +3,74 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta Tags -->
+    <title>LinkPad - The Serverless Note App | Share Notes via URL</title>
+    <meta
+      name="title"
+      content="LinkPad - The Serverless Note App | Share Notes via URL"
+    />
     <meta
       name="description"
-      content="LinkPad - The serverless note app. No database, no login, just a URL. Share encrypted notes instantly with a single link."
+      content="LinkPad is a serverless note app. No database, no login, just a URL. Create, compress, and share notes instantly with a single link. 100% client-side, privacy-first."
     />
     <meta
       name="keywords"
-      content="note sharing, serverless, privacy, encryption, pastebin alternative"
+      content="note sharing, serverless, privacy, encryption, pastebin alternative, URL notes, no login, client-side, share text, compress notes"
     />
-    <meta name="author" content="LinkPad" />
+    <meta name="author" content="Vikash" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="English" />
 
-    <title>LinkPad - The Serverless Note App</title>
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://linkpad.app/" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="apple-touch-icon" href="favicon.svg" />
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#6366f1" />
+    <meta name="msapplication-TileColor" content="#6366f1" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://linkpad.app/" />
+    <meta property="og:title" content="LinkPad - The Serverless Note App" />
+    <meta
+      property="og:description"
+      content="No database. No login. Just a URL. Create and share notes instantly with a single link. 100% client-side, privacy-first."
+    />
+    <meta
+      property="og:image"
+      content="https://linkpad.app/public/editor_dark.png"
+    />
+    <meta property="og:site_name" content="LinkPad" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://linkpad.app/" />
+    <meta name="twitter:title" content="LinkPad - The Serverless Note App" />
+    <meta
+      name="twitter:description"
+      content="No database. No login. Just a URL. Create and share notes instantly with a single link. 100% client-side, privacy-first."
+    />
+    <meta
+      name="twitter:image"
+      content="https://linkpad.app/public/editor_dark.png"
+    />
+    <meta name="twitter:creator" content="@imvikashdev" />
+
+    <!-- Additional SEO -->
+    <meta name="application-name" content="LinkPad" />
+    <meta name="apple-mobile-web-app-title" content="LinkPad" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="format-detection" content="telephone=no" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -135,14 +192,88 @@
           </div>
 
           <div class="hero__visual">
-            <div
-              class="image-placeholder hero__image-placeholder"
-              role="img"
-              aria-label="Hero illustration showing the LinkPad editor interface"
-            >
-              [IMAGE: Hero illustration - Modern editor interface with floating
-              URL showing compressed data, abstract gradient background with
-              code snippets]
+            <!-- CSS-based Hero Visual -->
+            <div class="hero-mockup">
+              <!-- Browser Frame -->
+              <div class="hero-mockup__browser">
+                <div class="hero-mockup__browser-header">
+                  <div class="hero-mockup__dots">
+                    <span class="hero-mockup__dot hero-mockup__dot--red"></span>
+                    <span
+                      class="hero-mockup__dot hero-mockup__dot--yellow"
+                    ></span>
+                    <span
+                      class="hero-mockup__dot hero-mockup__dot--green"
+                    ></span>
+                  </div>
+                  <div class="hero-mockup__url-bar">
+                    <i
+                      data-lucide="lock"
+                      class="hero-mockup__lock-icon"
+                      aria-hidden="true"
+                    ></i>
+                    <span class="hero-mockup__url">
+                      <span class="hero-mockup__url-domain">linkpad.app</span
+                      ><span class="hero-mockup__url-hash">#</span
+                      ><span
+                        class="hero-mockup__url-encoded"
+                        aria-label="Compressed note data"
+                        >H4sIAAAA...your_note_here</span
+                      >
+                    </span>
+                  </div>
+                </div>
+                <!-- Editor Content -->
+                <div class="hero-mockup__content">
+                  <div class="hero-mockup__toolbar">
+                    <span class="hero-mockup__tool" aria-hidden="true">¶</span>
+                    <span
+                      class="hero-mockup__tool hero-mockup__tool--active"
+                      aria-hidden="true"
+                      >H1</span
+                    >
+                    <span class="hero-mockup__tool" aria-hidden="true">B</span>
+                    <span class="hero-mockup__tool" aria-hidden="true">I</span>
+                    <span class="hero-mockup__tool" aria-hidden="true">U</span>
+                  </div>
+                  <div class="hero-mockup__editor">
+                    <h1 class="hero-mockup__heading">My Private Note 📝</h1>
+                    <p class="hero-mockup__text">
+                      This text is <strong>compressed</strong> and stored
+                      <em>entirely</em> in the URL.
+                    </p>
+                    <p class="hero-mockup__text--highlight">
+                      Share via link → No server needed!
+                    </p>
+                  </div>
+                  <div class="hero-mockup__status">
+                    <span class="hero-mockup__status-dot"></span>
+                    <span>Saved in URL</span>
+                    <span class="hero-mockup__divider">•</span>
+                    <span>12 words</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Floating Elements -->
+              <div
+                class="hero-mockup__float hero-mockup__float--1"
+                aria-hidden="true"
+              >
+                <i data-lucide="link"></i>
+              </div>
+              <div
+                class="hero-mockup__float hero-mockup__float--2"
+                aria-hidden="true"
+              >
+                <i data-lucide="shield-check"></i>
+              </div>
+              <div
+                class="hero-mockup__float hero-mockup__float--3"
+                aria-hidden="true"
+              >
+                <i data-lucide="zap"></i>
+              </div>
             </div>
           </div>
         </div>
@@ -575,7 +706,7 @@
 
         <div class="footer__social">
           <a
-            href="https://github.com"
+            href="https://github.com/imvikashdev/linkpad"
             class="footer__social-link"
             aria-label="View source code on GitHub"
             title="GitHub"
@@ -585,7 +716,7 @@
             <i data-lucide="github" aria-hidden="true"></i>
           </a>
           <a
-            href="https://x.com"
+            href="https://x.com/imvikashdev"
             class="footer__social-link"
             aria-label="Follow on X (formerly Twitter)"
             title="X (Twitter)"

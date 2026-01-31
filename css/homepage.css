@@ -161,11 +161,272 @@
 
 .hero__visual {
   animation: fadeUp 0.6s ease-out 0.4s both;
+  position: relative;
 }
 
-.hero__image-placeholder {
-  aspect-ratio: 4/3;
-  min-height: 350px;
+/* ========== Hero Mockup ========== */
+.hero-mockup {
+  position: relative;
+}
+
+.hero-mockup__browser {
+  background: var(--color-surface);
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.hero-mockup__browser-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.hero-mockup__dots {
+  display: flex;
+  gap: 6px;
+}
+
+.hero-mockup__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.hero-mockup__dot--red {
+  background: #ff5f57;
+}
+.hero-mockup__dot--yellow {
+  background: #ffbd2e;
+}
+.hero-mockup__dot--green {
+  background: #28ca41;
+}
+
+.hero-mockup__url-bar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-surface);
+  border-radius: 6px;
+  font-size: var(--text-xs);
+  font-family: 'JetBrains Mono', monospace;
+  overflow: hidden;
+}
+
+.hero-mockup__lock-icon {
+  width: 12px;
+  height: 12px;
+  color: #28ca41;
+  flex-shrink: 0;
+}
+
+.hero-mockup__url {
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.hero-mockup__url-domain {
+  color: var(--color-text);
+}
+
+.hero-mockup__url-hash {
+  color: var(--color-accent);
+}
+
+.hero-mockup__url-encoded {
+  color: var(--color-text-secondary);
+  animation: typeUrl 3s steps(20) infinite;
+  overflow: hidden;
+  max-width: 200px;
+}
+
+@keyframes typeUrl {
+  0%,
+  100% {
+    max-width: 200px;
+  }
+  50% {
+    max-width: 100px;
+  }
+}
+
+.hero-mockup__content {
+  padding: var(--space-4);
+  min-height: 260px;
+}
+
+.hero-mockup__toolbar {
+  display: flex;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  background: var(--color-bg);
+  border-radius: 8px;
+  margin-bottom: var(--space-4);
+  width: fit-content;
+}
+
+.hero-mockup__tool {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.hero-mockup__tool--active {
+  background: var(--color-accent);
+  color: white;
+}
+
+.hero-mockup__editor {
+  padding: var(--space-2) 0;
+}
+
+.hero-mockup__heading {
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-2);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+.hero-mockup__text {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-2);
+}
+
+.hero-mockup__text strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.hero-mockup__text--highlight {
+  display: inline-block;
+  margin-top: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  background: linear-gradient(135deg, var(--color-accent), #a855f7);
+  color: white;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  border-radius: 4px;
+}
+
+.hero-mockup__status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-bg);
+  border-radius: 20px;
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  width: fit-content;
+}
+
+.hero-mockup__status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #28ca41;
+  animation: blink 2s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.hero-mockup__divider {
+  opacity: 0.5;
+}
+
+/* Floating Elements */
+.hero-mockup__float {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: #1e1e2e;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.4);
+  color: var(--color-accent);
+}
+
+.light-mode .hero-mockup__float {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.15);
+}
+
+.hero-mockup__float svg {
+  width: 20px;
+  height: 20px;
+}
+
+.hero-mockup__float--1 {
+  top: -10px;
+  right: -20px;
+  animation: float 4s ease-in-out infinite;
+}
+
+.hero-mockup__float--2 {
+  bottom: 60px;
+  right: -30px;
+  animation: float 4s ease-in-out 1s infinite;
+}
+
+.hero-mockup__float--3 {
+  top: 40%;
+  left: -25px;
+  animation: float 4s ease-in-out 2s infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@media (max-width: 968px) {
+  .hero-mockup__float {
+    display: none;
+  }
 }
 
 /* ========== Animations ========== */
