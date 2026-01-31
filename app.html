@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="LinkPad Editor - Create and share notes instantly. No account required."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <title>Editor - LinkPad</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/editor.css" />
+  </head>
+  <body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#editor" class="skip-link">Skip to editor</a>
+
+    <div class="editor-layout">
+      <!-- ========== Header ========== -->
+      <header class="editor-header" role="banner">
+        <!-- Left: Logo with title -->
+        <a
+          href="index.html"
+          class="editor-header__brand"
+          aria-label="LinkPad - Back to homepage"
+          title="Back to homepage"
+        >
+          <span class="editor-header__logo-icon" aria-hidden="true">
+            <i
+              data-lucide="link"
+              style="width: 16px; height: 16px; color: white"
+            ></i>
+          </span>
+          <span class="editor-header__title">LinkPad</span>
+        </a>
+
+        <!-- Center: Spacer -->
+        <div class="editor-header__spacer"></div>
+
+        <!-- Right: Actions -->
+        <div class="editor-header__actions">
+          <!-- Undo/Redo -->
+          <div class="editor-header__history">
+            <button
+              type="button"
+              class="btn btn--icon btn--ghost"
+              id="undo-btn"
+              aria-label="Undo"
+              title="Undo (Ctrl+Z)"
+            >
+              <i data-lucide="undo" aria-hidden="true"></i>
+            </button>
+            <button
+              type="button"
+              class="btn btn--icon btn--ghost"
+              id="redo-btn"
+              aria-label="Redo"
+              title="Redo (Ctrl+Y)"
+            >
+              <i data-lucide="redo" aria-hidden="true"></i>
+            </button>
+          </div>
+
+          <div class="editor-header__divider" aria-hidden="true"></div>
+
+          <!-- Copy Link with text -->
+          <button
+            type="button"
+            class="btn btn--ghost btn--with-text"
+            id="copy-link-btn"
+            aria-label="Copy shareable link"
+            title="Copy link"
+          >
+            <i data-lucide="link-2" aria-hidden="true"></i>
+            <span>Copy Link</span>
+          </button>
+
+          <!-- New Note with text -->
+          <button
+            type="button"
+            class="btn btn--ghost btn--with-text"
+            id="new-note-btn"
+            aria-label="Create new note"
+            title="New note"
+          >
+            <i data-lucide="file-plus" aria-hidden="true"></i>
+            <span>New Note</span>
+          </button>
+
+          <!-- Theme Toggle -->
+          <button
+            type="button"
+            class="btn btn--icon btn--ghost"
+            id="theme-toggle"
+            aria-label="Toggle dark mode"
+            title="Toggle theme"
+          >
+            <i data-lucide="moon" aria-hidden="true"></i>
+          </button>
+        </div>
+      </header>
+
+      <!-- ========== Status Pill (below header) ========== -->
+      <div class="status-pill" role="status" aria-live="polite">
+        <span
+          class="status-pill__indicator saved"
+          id="status-indicator"
+          aria-hidden="true"
+        ></span>
+        <span id="status-text">Ready</span>
+        <span class="status-pill__divider">·</span>
+        <span><span id="word-count">0</span> words</span>
+        <span class="status-pill__divider">·</span>
+        <span><span id="char-count">0</span> chars</span>
+      </div>
+
+      <!-- ========== Full-Page Editor ========== -->
+      <main class="editor-main" id="main-content">
+        <article
+          id="editor"
+          class="editor"
+          contenteditable="true"
+          role="textbox"
+          aria-multiline="true"
+          aria-label="Note editor - Type / for formatting options"
+          data-placeholder="Start typing... Press / for commands"
+          spellcheck="true"
+        ></article>
+      </main>
+
+      <!-- ========== Slash Command Menu (Horizontal Toolbar) ========== -->
+      <div
+        id="slash-menu"
+        class="slash-menu"
+        role="toolbar"
+        aria-label="Formatting commands"
+        hidden
+      >
+        <button
+          type="button"
+          class="slash-menu__btn"
+          data-action="paragraph"
+          data-tooltip="Normal Text"
+        >
+          <i data-lucide="pilcrow" aria-hidden="true"></i>
+        </button>
+        <button
+          type="button"
+          class="slash-menu__btn"
+          data-action="heading-1"
+          data-tooltip="Heading 1"
+        >
+          <i data-lucide="heading-1" aria-hidden="true"></i>
+        </button>
+        <button
+          type="button"
+          class="slash-menu__btn"
+          data-action="heading-2"
+          data-tooltip="Heading 2"
+        >
+          <i data-lucide="heading-2" aria-hidden="true"></i>
+        </button>
+        <button
+          type="button"
+          class="slash-menu__btn"
+          data-action="heading-3"
+          data-tooltip="Heading 3"
+        >
+          <i data-lucide="heading-3" aria-hidden="true"></i>
+        </button>
+        <button
+          type="button"
+          class="slash-menu__btn"
+          data-action="heading-4"
+          data-tooltip="Heading 4"
+        >
+          <i data-lucide="heading-4" aria-hidden="true"></i>
+        </button>
+        <div class="slash-menu__divider" aria-hidden="true"></div>
+        <div class="slash-menu__size-group">
+          <button
+            type="button"
+            class="slash-menu__btn slash-menu__btn--size"
+            id="size-decrease-btn"
+            data-action="size-decrease"
+            data-tooltip="Decrease size"
+          >
+            <i data-lucide="minus" aria-hidden="true"></i>
+          </button>
+          <select
+            id="font-size-select"
+            class="slash-menu__select"
+            aria-label="Font size"
+          >
+            <option value="10">10</option>
+            <option value="12">12</option>
+            <option value="14">14</option>
+            <option value="16" selected>16</option>
+            <option value="18">18</option>
+            <option value="20">20</option>
+            <option value="24">24</option>
+            <option value="28">28</option>
+            <option value="32">32</option>
+            <option value="36">36</option>
+            <option value="48">48</option>
+            <option value="64">64</option>
+          </select>
+          <button
+            type="button"
+            class="slash-menu__btn slash-menu__btn--size"
+            id="size-increase-btn"
+            data-action="size-increase"
+            data-tooltip="Increase size"
+          >
+            <i data-lucide="plus" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="slash-menu__divider" aria-hidden="true"></div>
+        <button
+          type="button"
+          class="slash-menu__btn"
+          data-action="bold"
+          data-tooltip="Bold"
+        >
+          <i data-lucide="bold" aria-hidden="true"></i>
+        </button>
+        <button
+          type="button"
+          class="slash-menu__btn"
+          data-action="italic"
+          data-tooltip="Italic"
+        >
+          <i data-lucide="italic" aria-hidden="true"></i>
+        </button>
+        <button
+          type="button"
+          class="slash-menu__btn"
+          data-action="underline"
+          data-tooltip="Underline"
+        >
+          <i data-lucide="underline" aria-hidden="true"></i>
+        </button>
+        <div class="slash-menu__divider" aria-hidden="true"></div>
+        <button
+          type="button"
+          class="slash-menu__btn"
+          data-action="list-unordered"
+          data-tooltip="Bullet List"
+        >
+          <i data-lucide="list" aria-hidden="true"></i>
+        </button>
+        <button
+          type="button"
+          class="slash-menu__btn"
+          data-action="list-ordered"
+          data-tooltip="Numbered List"
+        >
+          <i data-lucide="list-ordered" aria-hidden="true"></i>
+        </button>
+        <button
+          type="button"
+          class="slash-menu__btn"
+          data-action="quote"
+          data-tooltip="Quote"
+        >
+          <i data-lucide="quote" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+    <!-- Initialize Icons -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        if (typeof lucide !== 'undefined') {
+          lucide.createIcons();
+        }
+      });
+    </script>
+
+    <!-- Editor JS (ES Module) -->
+    <script type="module" src="js/editor.js"></script>
+  </body>
+</html>
