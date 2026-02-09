@@ -23,7 +23,7 @@
     <meta name="language" content="English" />
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://linkpad.app/" />
+    <link rel="canonical" href="https://linkpad.imvikash.dev/" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
@@ -35,7 +35,7 @@
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://linkpad.app/" />
+    <meta property="og:url" content="https://linkpad.imvikash.dev/" />
     <meta property="og:title" content="LinkPad - The Serverless Note App" />
     <meta
       property="og:description"
@@ -43,14 +43,14 @@
     />
     <meta
       property="og:image"
-      content="https://linkpad.app/public/editor_dark.png"
+      content="https://linkpad.imvikash.dev/public/editor_dark.png"
     />
     <meta property="og:site_name" content="LinkPad" />
     <meta property="og:locale" content="en_US" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://linkpad.app/" />
+    <meta name="twitter:url" content="https://linkpad.imvikash.dev/" />
     <meta name="twitter:title" content="LinkPad - The Serverless Note App" />
     <meta
       name="twitter:description"
@@ -58,7 +58,7 @@
     />
     <meta
       name="twitter:image"
-      content="https://linkpad.app/public/editor_dark.png"
+      content="https://linkpad.imvikash.dev/public/editor_dark.png"
     />
     <meta name="twitter:creator" content="@imvikashdev" />
 
@@ -85,6 +85,97 @@
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/components.css" />
     <link rel="stylesheet" href="css/homepage.css" />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebApplication",
+            "name": "LinkPad",
+            "url": "https://linkpad.imvikash.dev/",
+            "description": "A serverless note app. No database, no login, just a URL. Create, compress, and share notes instantly with a single link.",
+            "applicationCategory": "ProductivityApplication",
+            "operatingSystem": "Any",
+            "browserRequirements": "Requires JavaScript",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "featureList": [
+              "Zero server storage",
+              "Native Gzip compression",
+              "Zero tracking",
+              "Instant sharing via URL",
+              "Rich text editor",
+              "Works offline"
+            ],
+            "author": {
+              "@type": "Person",
+              "name": "Vikash",
+              "url": "https://x.com/imvikashdev"
+            }
+          },
+          {
+            "@type": "Organization",
+            "name": "LinkPad",
+            "url": "https://linkpad.imvikash.dev/",
+            "logo": "https://linkpad.imvikash.dev/favicon.svg",
+            "sameAs": [
+              "https://github.com/imvikashdev/linkpad",
+              "https://x.com/imvikashdev"
+            ]
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How does LinkPad store my data?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "LinkPad compresses your content using browser-native Gzip, encodes it to Base64, and stores it directly in the URL hash. Your data never leaves your browser or touches any server."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is there a size limit for notes?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "URLs typically support up to ~2000 characters in most browsers. With Gzip compression, this translates to roughly 4-8KB of raw text, depending on content repetition."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I use this offline?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes! Once the page is loaded, all functionality works offline. The editor, compression, and URL generation are 100% client-side."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is my data encrypted?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Currently, data is compressed but not encrypted. The URL is obfuscated by compression, but anyone with the link can decode it."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Do links expire?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Never! Since data is encoded in the URL itself, links work forever as long as the app is accessible."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <!-- Skip Link for Accessibility -->

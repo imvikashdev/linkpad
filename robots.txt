@@ -1,0 +1,8 @@
+# robots.txt for LinkPad
+# https://linkpad.imvikash.dev
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://linkpad.imvikash.dev/sitemap.xml
